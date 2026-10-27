@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#120f1a">
+  <meta name="description" content="Donjons en vue du dessus, jouables en solo ou en coopération en ligne jusqu'à 4 joueurs, directement dans le navigateur.">
+  <title>Brumeval — Donjons coop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="vendor/peerjs.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="menu" class="screen">
+    <div class="card">
+      <h1>Brumeval</h1>
+      <p class="sub">Explorez la vallée, nettoyez les donjons et terrassez leurs gardiens — seul avec des compagnons, ou jusqu’à 4 amis en ligne.</p>
+
+      <label class="field">Pseudo
+        <input id="name" maxlength="16" autocomplete="off" placeholder="Votre nom de héros">
+      </label>
+
+      <h2>Classe</h2>
+      <div id="classes" class="classes"></div>
+
+      <div class="modes">
+        <section>
+          <h2>Solo</h2>
+          <label class="field">Compagnons IA
+            <select id="bots">
+              <option value="0">Aucun</option>
+              <option value="1">1 compagnon</option>
+              <option value="2">2 compagnons</option>
+              <option value="3">3 compagnons</option>
+            </select>
+          </label>
+          <button id="btn-solo" class="primary">Jouer en solo</button>
+          <p class="hint">Les compagnons IA complètent aussi votre groupe en ligne et laissent leur place quand un ami arrive.</p>
+        </section>
+        <section>
+          <h2>Coop en ligne</h2>
+          <button id="btn-host" class="primary">Créer une partie</button>
+          <div class="join">
+            <input id="code" maxlength="5" autocomplete="off" placeholder="CODE" spellcheck="false">
+            <button id="btn-join">Rejoindre</button>
+          </div>
+          <p class="hint">Partagez le code ou le lien : vos amis rejoignent à tout moment, sans compte ni installation.</p>
+        </section>
+      </div>
+      <p id="status" role="status"></p>
+
+      <details>
+        <summary>Commandes</summary>
+        <ul class="keys">
+          <li><b>ZQSD / WASD / flèches</b> se déplacer</li>
+          <li><b>Souris</b> viser — <b>clic gauche</b> attaquer</li>
+          <li><b>Clic droit / Espace</b> compétence 1</li>
+          <li><b>Maj / E</b> compétence 2</li>
+          <li><b>R</b> boire une potion</li>
+          <li><b>Tab / M</b> carte — <b>Échap</b> menu</li>
+          <li><b>Manette</b> : stick gauche bouger, stick droit viser et tirer, LB/RB compétences, X potion</li>
+          <li><b>Mobile</b> : pouce gauche bouger, pouce droit viser et attaquer</li>
+          <li>Restez près d’un allié à terre pour le relever. La fontaine du village soigne et remplit les potions.</li>
+        </ul>
+      </details>
+      <p class="small">Progression sauvegardée dans ce navigateur. <button id="btn-reset" class="link">Recommencer un nouveau monde</button></p>
+    </div>
+  </div>
+
+  <div id="pause" class="screen hidden">
+    <div class="card narrow">
+      <h2>Pause</h2>
+      <p id="pause-note" class="hint"></p>
+      <div id="pause-share" class="share hidden">
+        <p>Code de la partie : <b id="pause-code"></b></p>
+        <button id="btn-copy">Copier le lien d’invitation</button>
+      </div>
+      <button id="btn-resume" class="primary">Reprendre</button>
+      <button id="btn-quit">Quitter vers le menu</button>
+    </div>
+  </div>
+
+  <div id="hostbar" class="hidden">
+    <span>Code <b id="hostbar-code"></b></span>
+    <button id="hostbar-copy">Copier le lien</button>
+  </div>
+</body>
+</html>
